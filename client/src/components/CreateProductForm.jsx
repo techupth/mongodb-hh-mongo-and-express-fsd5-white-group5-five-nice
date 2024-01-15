@@ -4,8 +4,9 @@ import axios from "axios";
 
 function CreateProductForm() {
   const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("https://placehold.co/250x250");
   const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
 
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function CreateProductForm() {
       image: imageUrl,
       price,
       description,
+      category,
     });
     navigate("/");
   };
@@ -94,13 +96,20 @@ function CreateProductForm() {
       <div className="input-container">
         <label>
           Category
-          <select id="category" name="category" value="it">
+          <select
+            id="category"
+            name="category"
+            value={category}
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
+          >
             <option disabled value="">
               -- Select a category --
             </option>
-            <option value="it">IT</option>
-            <option value="fashion">Fashion</option>
-            <option value="food">Food</option>
+            <option value="IT">IT</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Food">Food</option>
           </select>
         </label>
       </div>
